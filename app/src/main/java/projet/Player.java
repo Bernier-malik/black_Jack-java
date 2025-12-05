@@ -76,12 +76,36 @@ public class Player {
     }   
     
     public static void main(String[] args) {
-        Player player = new Player("Malik");
-        packet deck = new packet();
-        player.addCarte(deck.tirerCarte());
-        player.addCarte(deck.tirerCarte());
-        player.calculateScore();
-        System.out.println("Drew card: " + player.handToString());
-        System.out.println("Scores: " + player.scoreToString());
+        int bjCount = 0;
+        int totalFrames = 0;
+        int games = 10000;
+        
+        for (int game = 0; game < games; game++) {
+            packet deck = new packet();
+            int frames = 0;
+            while (true) {
+                frames++;
+                totalFrames++;
+                Player player = new Player("Malik");
+                carte c1 = deck.tirerCarte();
+                carte c2 = deck.tirerCarte();
+                if (c1 == null || c2 == null) {
+                    break;
+                }
+                player.addCarte(c1);
+                player.addCarte(c2);
+                player.calculateScore();
+                if ("BJ".equals(player.scoreToString())) {
+                    bjCount++;
+                    System.out.println("Game " + (game + 1) + " - BJ trouvé après " + frames + " frames");
+                    break;
+                }
+            }
+        }
+        
+        System.out.println("\n--- Résultats ---");
+        System.out.println("Nombre total de BJ: " + bjCount);
+        System.out.println("Nombre total de frames: " + totalFrames);
+        System.out.println("Pourcentage de BJ: " + (bjCount * 100.0 / games) + "%");
     }
 }
