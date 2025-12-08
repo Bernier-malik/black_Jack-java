@@ -1,6 +1,6 @@
 package projet;
 
-import javax.smartcardio.Card;
+import java.util.Scanner;
 
 public class Player {
     private String name;
@@ -19,6 +19,14 @@ public class Player {
 
     public int[] getScore() {
         return score;
+    }
+
+    public carte[] getHand() {
+        return this.hand;
+    }
+
+    public void start(){
+
     }
 
     public void addCarte(carte card) {
@@ -54,15 +62,19 @@ public class Player {
     }
 
     public String scoreToString() {
-        if (score[0] == score[1]) {
+        if (score[0] == score[1] && score[0] <= 21) {
             return score[0] + "";
         } else {
-            if (score[1] > 21) {
-                return score[0] + " Perdu";
-            } else if (score[1] == 21 && hand.length == 2) {
+            if (score[1] == 21 && hand.length == 2 ) {
                 return "BJ";
+            } else if (score[1] > 21 && score[0] > 21) {
+                return score[0] + " Perdu";
+            } else if (score[1] > 21) {
+                return score[0] + "";
+            } else if (score[0] > 21) {
+                return score[1] + "";
             } else {
-                return score[0] + "/" + score[1];
+                return "" + Math.max(score[0], score[1]);
             }
         }
     }
@@ -74,6 +86,25 @@ public class Player {
         }
         return result;
     }   
+
+    public void play(packet deck) {
+        Scanner scanner = new Scanner( System.in );
+        while (true) {
+            System.out.println(this.name + ", your hand: " + this.handToString() + " " + this.scoreToString());
+            System.out.print("Do you want to draw a card? (y/entrer): ");
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("y")) {
+                this.addCarte(deck.tirerCarte());
+                this.calculateScore();
+                if (this.getScore()[0] > 21 && this.getScore()[1] > 21) {
+                    System.out.println(this.name + ", your hand: " + this.handToString() + " " + this.scoreToString());
+                    break;
+                } 
+            } else { 
+                break;
+            }
+        }
+    }
     
     public static void main(String[] args) {
         Player player = new Player("Malik");
