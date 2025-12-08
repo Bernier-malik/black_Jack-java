@@ -7,7 +7,7 @@ import java.awt.BorderLayout;
 public class interfac {
     public static void main(String[] args) {
         //init la fenetre
-        JFrame frame = new JFrame("Menu Swing");
+        JFrame frame = new JFrame("BlackJack");
         frame.setSize(1000, 700);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -98,6 +98,17 @@ public class interfac {
             frame.repaint();
             String winner = blackjackGame.getWinner();
             JOptionPane.showMessageDialog(frame, winner);
+
+            blackjackGame.reset();
+            blackjackGame.getPlayers().getHand();
+            blackjackGame.getCroupier().getHand();
+            croupier.setText("" + blackjackGame.getCroupier().startHandToString());
+            scoreCroupier.setText("" + blackjackGame.getCroupier().scoreToString());
+            player.setText("" + blackjackGame.getPlayers().handToString());
+            scorePlayer.setText("" + blackjackGame.getPlayers().scoreToString());
+            frame.revalidate();
+            frame.repaint();
+
         });
 
         //action du bouton afficher cartes qui va nous servir de debug 

@@ -68,7 +68,7 @@ public class Player {
             if (score[1] == 21 && hand.length == 2 ) {
                 return "BJ";
             } else if (score[1] > 21 && score[0] > 21) {
-                return score[0] + " Perdu";
+                return score[0] + "";
             } else if (score[1] > 21) {
                 return score[0] + "";
             } else if (score[0] > 21) {
