@@ -21,7 +21,7 @@ public class game {
     }
 
     public packet getDeck() {
-        return deck;
+        return this.deck;
     }
 
     public Player getPlayers() {

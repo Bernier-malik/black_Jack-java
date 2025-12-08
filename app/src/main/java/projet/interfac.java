@@ -37,6 +37,8 @@ public class interfac {
         JLabel scoreCroupier = new JLabel("" + blackjackGame.getCroupier().scoreToString());
         scoreCroupier.setFont(new Font("Serif", Font.BOLD, 40));
         scoreCroupier.setHorizontalAlignment(SwingConstants.CENTER);
+        scoreCroupier.setVerticalAlignment(SwingConstants.TOP);
+        scoreCroupier.setVisible(false);
         frame.add(scoreCroupier, BorderLayout.WEST);
 
         //main joueur 
@@ -50,10 +52,6 @@ public class interfac {
         scorePlayer.setFont(new Font("Serif", Font.BOLD, 40));
         scorePlayer.setHorizontalAlignment(SwingConstants.CENTER);
         frame.add(scorePlayer, BorderLayout.EAST);
-
-        
-
-
 
         //bouttons pour tirer une carte ou rester
         JPanel panel = new JPanel();
@@ -88,7 +86,9 @@ public class interfac {
 
         //fait jouer le croupier quand le joueur clique sur rester
         rester.addActionListener(e -> {
-            
+            scoreCroupier.setVisible(true);
+            frame.revalidate();
+            frame.repaint();
             croupier.setText(blackjackGame.getCroupier().handToString());
             scoreCroupier.setText(blackjackGame.getCroupier().scoreToString());
             blackjackGame.getCroupier().play(blackjackGame.getDeck());
@@ -100,6 +100,7 @@ public class interfac {
             JOptionPane.showMessageDialog(frame, winner);
 
             blackjackGame.reset();
+            scoreCroupier.setVisible(false);
             blackjackGame.getPlayers().getHand();
             blackjackGame.getCroupier().getHand();
             croupier.setText("" + blackjackGame.getCroupier().startHandToString());
@@ -108,7 +109,6 @@ public class interfac {
             scorePlayer.setText("" + blackjackGame.getPlayers().scoreToString());
             frame.revalidate();
             frame.repaint();
-
         });
 
         //action du bouton afficher cartes qui va nous servir de debug 
