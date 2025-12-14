@@ -2,9 +2,7 @@ package projet;
 
 import projet.Couleur;
 
-
-
-public class carte {
+public class Carte {
     private int value;
     private Couleur couleur;
     private int value_game;
@@ -16,7 +14,7 @@ public class carte {
     String[] trefle_card =  {"🃑", "🃒", "🃓", "🃔", "🃕", "🃖", "🃗", "🃘", "🃙", "🃚", "🃛", "🃝", "🃞"};
 
 
-    public carte(int value, Couleur couleur) {
+    public Carte(int value, Couleur couleur) {
         this.value = value;
         this.couleur = couleur;
         if (value >= 10) {
@@ -31,7 +29,7 @@ public class carte {
     }
 
     public Couleur getCouleur() {
-        return this.couleur;
+        return this.couleur; 
     }
 
     public int getValueGame() {
@@ -69,7 +67,7 @@ public class carte {
 
     
     public static void main(String[] args) {
-        carte card = new carte(10, Couleur.COEUR);
+        Carte card = new Carte(10, Couleur.COEUR);
         System.out.println(card.toString());
     }
 

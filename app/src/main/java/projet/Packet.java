@@ -1,10 +1,10 @@
 package projet;
 
-public class packet {
-    private carte[] cards;
+public class Packet {
+    private Carte[] cards;
 
-    public packet() {
-        this.cards = new carte[52];
+    public Packet() {
+        this.cards = new Carte[52];
         for (int i = 0; i < 52; i++) {
             int value = (i % 13) + 1;
             Couleur couleur;
@@ -17,12 +17,12 @@ public class packet {
             } else {
                 couleur = Couleur.PIQUE;
             }
-            this.cards[i] = new carte(value, couleur);
+            this.cards[i] = new Carte(value, couleur);
         }
         this.melanger();
     }
 
-    public carte[] getCards() {
+    public Carte[] getCards() {
         return cards;
     }
 
@@ -30,18 +30,18 @@ public class packet {
         java.util.Random rand = new java.util.Random();
         for (int i = 0; i < cards.length; i++) {
             int randomIndexToSwap = rand.nextInt(cards.length);
-            carte temp = cards[randomIndexToSwap];
+            Carte temp = cards[randomIndexToSwap];
             cards[randomIndexToSwap] = cards[i];
             cards[i] = temp;
         }
     }
 
-    public carte tirerCarte() {
+    public Carte tirerCarte() {
         if (cards.length == 0) {
             return null;
         }
-        carte drawnCard = cards[0];
-        carte[] newCards = new carte[cards.length - 1];
+        Carte drawnCard = cards[0];
+        Carte[] newCards = new Carte[cards.length - 1];
         System.arraycopy(cards, 1, newCards, 0, newCards.length);
         cards = newCards;
         return drawnCard;
@@ -62,7 +62,7 @@ public class packet {
     }
 
     public static void main(String[] args) {
-        packet deck = new packet();
+        Packet deck = new Packet();
         System.out.println(deck.toString());
         System.out.println("Tirer une carte: " + deck.tirerCarte().toString());
         System.out.println("Tirer une carte: " + deck.tirerCarte().toString());
