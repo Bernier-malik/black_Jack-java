@@ -36,10 +36,6 @@ package projet {
     - value : int
     - couleur : Couleur
     - value_game : int
-    - pic_card : String[]
-    - coeur_card : String[]
-    - carreau_card : String[]
-    - trefle_card : String[]
     + Carte(value : int, couleur : Couleur)
     + getValue() : int
     + getCouleur() : Couleur
@@ -133,6 +129,7 @@ Ce projet utilise **Gradle** pour la gestion des dépendances et la compilation.
 
 ```bash
 git clone https://github.com/Bernier-malik/black_Jack-java.git
+```
 
 ### Lancer le Projet (Console / GUI)
   * Avec VScode
