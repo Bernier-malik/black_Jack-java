@@ -140,6 +140,7 @@ git clone https://github.com/Bernier-malik/black_Jack-java.git
 
 ## 📂 Structure du Projet
 
+```
 src
 ├── main
 │ ├── java
@@ -151,6 +152,7 @@ src
 │ │ ├── Croupier.java
 │ │ ├── game.java
 │ │ └── interfac.java
+```
 
 -----
 
